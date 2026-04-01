@@ -112,6 +112,10 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   word-break: break-word;
+
+  @include mobile {
+    font-size: 0.85rem;
+  }
 }
 
 .artist {
