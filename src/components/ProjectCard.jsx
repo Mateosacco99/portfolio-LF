@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styles from '../styles/projectCard.module.scss'
 import { MusicContext } from '../context/MusicContext'
-import { FaSpotify } from 'react-icons/fa'
+import { FaSpotify, FaPlay } from 'react-icons/fa'
 
 const ProjectCard = ({ playlist, trackIndex, title, artist, image, spotifyUrl }) => {
   const { playPlaylist, currentTrackIndex, isPlaying } = useContext(MusicContext)
