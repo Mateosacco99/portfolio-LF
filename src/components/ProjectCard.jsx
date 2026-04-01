@@ -16,7 +16,7 @@ const ProjectCard = ({ playlist, trackIndex, title, artist, image, spotifyUrl })
     <div className={`${styles.projectCard} ${isCurrentTrack ? styles.active : ''}`} onClick={handleCardClick}>
       <div className={styles.imageContainer}>
         <img src={image} alt={title} className={styles.projectImage} />
-        {isCurrentTrack && <div className={styles.playingIndicator}>▶</div>}
+        {isCurrentTrack && <div className={styles.playingIndicator}><FaPlay /></div>}
       </div>
 
       <div className={styles.infoContainer}>
