@@ -5,18 +5,22 @@ import HamburgerMenu from './HamburgerMenu'
 
 const NavBar = () => {
   const menuItems = [
-    { label: 'Bio', href: '#home' },
+    { label: 'Bio', href: '#biografia' },
     { label: 'Proyectos', href: '#projects' },
     { label: 'Contacto', href: '#contact' }
   ]
 
   return (
     <div className={styles.navbar}>
-      <div className={styles.nameSection}>
-        <span className={styles.name}>LUCAS FERNANDEZ</span>
-      </div>
+      <a href="#home" className={styles.nameLink}>
+        <div className={styles.nameSection}>
+          <span className={styles.name}>LUCAS FERNANDEZ</span>
+        </div>
+      </a>
 
-      <img src={logo} alt="Logo" className={styles.navbarLogo} />
+      <a href="#home" className={styles.logoLink}>
+        <img src={logo} alt="Logo" className={styles.navbarLogo} />
+      </a>
 
       <nav className={styles.navMenu}>
         {menuItems.map((item, index) => (

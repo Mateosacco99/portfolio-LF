@@ -32,9 +32,16 @@
 }
 
 .nameSection {
+  display: flex;
+  align-items: center;
+}
+
+.nameLink {
   flex: 1;
   display: flex;
   justify-content: flex-start;
+  text-decoration: none;
+  cursor: pointer;
 
   @include mobile {
     display: none;
@@ -47,19 +54,27 @@
   letter-spacing: 0.15em;
   color: white;
 }
-  
-.navbarLogo {
+
+.logoLink {
   flex: 1;
   display: flex;
   justify-content: center;
-  height: 95px;
-  object-fit: contain;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
 
   @include mobile {
     flex: 0;
     justify-content: flex-start;
+  }
+}
+  
+.navbarLogo {
+  height: 95px;
+  object-fit: contain;
+
+  @include mobile {
     height: 60px;
-    margin-left: 0;
   }
 }
 
