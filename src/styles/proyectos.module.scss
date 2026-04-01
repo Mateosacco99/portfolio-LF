@@ -4,6 +4,15 @@
 
 .proyectosSection {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  padding-bottom: calc(5rem + 100px) !important;
+
+  @include mobile {
+    padding-bottom: calc(3rem + 100px) !important;
+  }
+
+  @include tablet {
+    padding-bottom: calc(4rem + 100px) !important;
+  }
 }
 
 .proyectosContent {
@@ -26,22 +35,39 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: white;
-  margin: 0;
+  margin: 0 0 2rem 0;
   animation: fadeInUp 1s ease-out 0.2s both;
-  width: 100%;
 
   @include mobile {
-    font-size: 1.5rem;
+    font-size: 2rem;
     letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
   }
 
   @include tablet {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+  }
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  @include tablet {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.2rem;
   }
 }
 
