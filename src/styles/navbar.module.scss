@@ -23,7 +23,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, $MS-navyblue 0%, $MS-deepblue 50%, $MS-brightblue 100%);
+    background: $MS-gradient;
   }
 
   @include mobile {

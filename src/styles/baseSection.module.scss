@@ -28,13 +28,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(
-      90deg,
-      rgba($MS-navyblue, 0) 0%,
-      $MS-deepblue 25%,
-      $MS-deepblue 75%,
-      rgba($MS-navyblue, 0) 100%
-    );
+    background: $MS-gradient;
   }
 }
 

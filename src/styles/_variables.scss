@@ -4,6 +4,14 @@ $MS-deepblue: #0373B2;
 $MS-brightblue: #0283C8;
 $MS-lightblue: #0695D8;
 
+$MS-gradient: linear-gradient(
+      90deg,
+      rgba($MS-navyblue, 0) 0%,
+      $MS-deepblue 25%,
+      $MS-deepblue 75%,
+      rgba($MS-navyblue, 0) 100%
+    );
+
 $MS-danger: #ff4d4d;
 $MS-success: #4CAF50;
 $MS-gray: #333;
