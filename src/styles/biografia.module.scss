@@ -1,0 +1,91 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.biografiaSection {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.bioContent {
+  gap: 2rem;
+  color: $MS-deepblue;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile {
+    gap: 1.5rem;
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: white;
+  margin: 0;
+  animation: fadeInUp 1s ease-out 0.2s both;
+  width: 100%;
+
+  @include mobile {
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+  }
+
+  @include tablet {
+    font-size: 1.5rem;
+  }
+}
+
+.bioText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+
+  @include mobile {
+    gap: 1rem;
+  }
+}
+
+.bio {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: $MS-deepblue;
+  margin: 0;
+  text-align: center;
+  animation: fadeInUp 1s ease-out 0.4s both;
+  text-transform: none;
+
+  @include mobile {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  @include tablet {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
