@@ -16,7 +16,7 @@
   backdrop-filter: blur(10px);
 
   @include mobile {
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
   }
 }
 
@@ -28,7 +28,7 @@
   margin: 0 auto;
 
   @include mobile {
-    gap: 1rem;
+    gap: 0.5rem;
   }
 }
 
@@ -41,7 +41,7 @@
 
   @include mobile {
     min-width: auto;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 }
 
@@ -52,8 +52,8 @@
   object-fit: cover;
 
   @include mobile {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
 }
 
@@ -63,7 +63,7 @@
 }
 
 .trackTitle {
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: white;
   margin: 0;
@@ -79,7 +79,7 @@
 }
 
 .artist {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 400;
   color: $MS-deepblue;
   margin: 0;
@@ -95,7 +95,7 @@
   flex-shrink: 0;
 
   @include mobile {
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
 }
 
@@ -164,6 +164,7 @@
 
   @include mobile {
     gap: 0.5rem;
+    display: none;
   }
 }
 
