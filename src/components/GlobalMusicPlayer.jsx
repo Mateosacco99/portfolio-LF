@@ -14,6 +14,9 @@ const GlobalMusicPlayer = () => {
     nextTrack,
     previousTrack,
     handleProgressChange,
+    handleTimeUpdate,
+    handleLoadedMetadata,
+    setDuration,
     playlist,
     currentTrackIndex
   } = useContext(MusicContext)
@@ -35,12 +38,8 @@ const GlobalMusicPlayer = () => {
     <div className={styles.globalPlayer}>
       <audio
         ref={audioRef}
-        onTimeUpdate={() => {
-          setCurrentTime(audioRef.current.currentTime)
-        }}
-        onLoadedMetadata={() => {
-          setDuration(audioRef.current.duration)
-        }}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
         onEnded={nextTrack}
         src={currentTrack.audioUrl}
       />

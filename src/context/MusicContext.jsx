@@ -1,4 +1,4 @@
-import React, { createContext, useState, useRef } from 'react'
+import React, { createContext, useState, useRef, useEffect } from 'react'
 
 export const MusicContext = createContext()
 
@@ -11,6 +11,25 @@ export const MusicProvider = ({ children }) => {
   const audioRef = useRef(null)
 
   const currentTrack = playlist[currentTrackIndex]
+
+  // Use track's duration if available, otherwise wait for metadata
+  useEffect(() => {
+    if (currentTrack?.duration) {
+      setDuration(currentTrack.duration)
+    } else {
+      setDuration(0)
+    }
+    setCurrentTime(0)
+  }, [currentTrack])
+
+  // Handle autoplay when track changes
+  useEffect(() => {
+    if (audioRef.current && isPlaying && currentTrack) {
+      audioRef.current.play().catch(() => {
+        // Playback might be blocked, ignore
+      })
+    }
+  }, [currentTrack, isPlaying])
 
   const playTrack = (track, trackIndex = 0) => {
     if (Array.isArray(track)) {
@@ -27,6 +46,15 @@ export const MusicProvider = ({ children }) => {
     setPlaylist(tracks)
     setCurrentTrackIndex(startIndex)
     setIsPlaying(true)
+    
+    // Start playing when track is ready
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play().catch(() => {
+          // Playback might be blocked, just continue
+        })
+      }
+    }, 100)
   }
 
   const togglePlayPause = () => {
@@ -62,7 +90,9 @@ export const MusicProvider = ({ children }) => {
 
   const handleLoadedMetadata = () => {
     if (audioRef.current) {
-      setDuration(audioRef.current.duration)
+      // Use track's duration if available, otherwise use audio element's duration
+      const trackDuration = currentTrack?.duration || audioRef.current.duration
+      setDuration(trackDuration)
     }
   }
 
