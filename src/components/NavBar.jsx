@@ -6,7 +6,7 @@ import HamburgerMenu from './HamburgerMenu'
 const NavBar = () => {
   const menuItems = [
     { label: 'Bio', href: '#biografia' },
-    { label: 'Proyectos', href: '#projects' },
+    { label: 'Proyectos', href: '#proyectos' },
     { label: 'Contacto', href: '#contact' }
   ]
 
