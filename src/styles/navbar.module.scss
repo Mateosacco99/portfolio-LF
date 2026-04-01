@@ -1,0 +1,90 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.navbar {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+  padding: 0 2rem;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  height: 5.5rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  width: 100%;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $MS-navyblue 0%, $MS-deepblue 50%, $MS-brightblue 100%);
+  }
+
+  @include mobile {
+    padding: 0 1rem;
+  }
+}
+
+.nameSection {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: white;
+}
+  
+.navbarLogo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  height: 95px;
+  object-fit: contain;
+
+  @include mobile {
+    flex: 0;
+    justify-content: flex-start;
+    height: 60px;
+    margin-left: 0;
+  }
+}
+
+.navMenu {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &:hover {
+      color: $MS-brightblue;
+    }
+  }
+
+  @include mobile {
+    display: none;
+  }
+}

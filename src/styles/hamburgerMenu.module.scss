@@ -1,0 +1,70 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.hamburgerContainer {
+  display: none;
+  position: relative;
+
+  @include mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.hamburgerButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: $MS-deepblue;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $MS-brightblue;
+  }
+}
+
+.mobileMenu {
+  display: none;
+  position: fixed;
+  top: 5.5rem;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  padding: 1rem 2rem;
+  border-bottom: 5px solid;
+  border-image: linear-gradient(90deg, $MS-navyblue 0%, $MS-deepblue 50%, $MS-brightblue 100%) 1;
+  width: 100%;
+
+  a {
+    text-decoration: none;
+    color: $MS-deepblue;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    display: block;
+
+    &:hover {
+      color: $MS-brightblue;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &.active {
+    display: flex;
+  }
+}

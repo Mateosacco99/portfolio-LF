@@ -1,0 +1,52 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.section {
+  width: 100%;
+  padding: 5rem 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  @include mobile {
+    padding: 3rem 1rem;
+    min-height: auto;
+  }
+
+  @include tablet {
+    padding: 4rem 1.5rem;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      rgba($MS-navyblue, 0) 0%,
+      $MS-deepblue 25%,
+      $MS-deepblue 75%,
+      rgba($MS-navyblue, 0) 100%
+    );
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @include mobile {
+    max-width: 100%;
+    gap: 1rem;
+  }
+}

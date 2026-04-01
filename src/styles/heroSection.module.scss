@@ -1,0 +1,99 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.heroSection {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+
+  @include mobile {
+    gap: 1.5rem;
+  }
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: cover;
+  margin-top: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.8s ease-out;
+
+  @include mobile {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: $MS-deepblue;
+
+  @include mobile {
+    gap: 0.25rem;
+  }
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: white;
+  margin: 0;
+  animation: fadeInUp 1s ease-out 0.2s both;
+
+  @include mobile {
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+  }
+
+  @include tablet {
+    font-size: 2.5rem;
+  }
+}
+
+.profession {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $MS-deepblue;
+  margin: 0;
+  animation: fadeInUp 1s ease-out 0.4s both;
+
+  @include mobile {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  @include tablet {
+    font-size: 1rem;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
