@@ -1,13 +1,33 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/proyectos.module.scss'
 import BaseSection from './BaseSection'
 import ProjectCard from './ProjectCard'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 const Proyectos = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [itemsPerView, setItemsPerView] = useState(4)
-  const carouselRef = useRef(null)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [itemsPerPage, setItemsPerPage] = useState(4)
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const handlePageChange = (newPage) => {
+    setIsAnimating(true)
+    setTimeout(() => {
+      setCurrentPage(newPage)
+      setIsAnimating(false)
+    }, 150)
+  }
+
+  const handlePrev = () => {
+    if (!isAnimating) {
+      handlePageChange(Math.max(0, currentPage - 1))
+    }
+  }
+
+  const handleNext = () => {
+    if (!isAnimating) {
+      handlePageChange(Math.min(maxPage, currentPage + 1))
+    }
+  }
 
   const projectsData = [
     {
@@ -61,9 +81,9 @@ const Proyectos = () => {
     const handleResize = () => {
       const width = window.innerWidth
       if (width <= 500) {
-        setItemsPerView(2)
+        setItemsPerPage(1)
       } else {
-        setItemsPerView(4)
+        setItemsPerPage(3)
       }
     }
 
@@ -72,15 +92,11 @@ const Proyectos = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const maxIndex = Math.max(0, projectsData.length - itemsPerView)
+  const totalPages = Math.ceil(projectsData.length / itemsPerPage)
+  const maxPage = Math.max(0, totalPages - 1)
 
-  const handlePrev = () => {
-    setCurrentIndex(prev => Math.max(0, prev - 1))
-  }
-
-  const handleNext = () => {
-    setCurrentIndex(prev => Math.min(maxIndex, prev + 1))
-  }
+  const startIndex = currentPage * itemsPerPage
+  const visibleItems = projectsData.slice(startIndex, startIndex + itemsPerPage)
 
   return (
     <BaseSection id="proyectos" className={styles.proyectosSection}>
@@ -90,22 +106,19 @@ const Proyectos = () => {
         <button 
           className={styles.carouselBtn}
           onClick={handlePrev}
-          disabled={currentIndex === 0}
+          disabled={currentPage === 0}
           aria-label="Previous projects"
         >
           <FaChevronLeft size={20} />
         </button>
 
-        <div className={styles.carouselWrapper}>
-          <div 
-            className={styles.projectsCarousel}
-            style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
-          >
-            {projectsData.map((project, index) => (
+<div className={styles.carouselWrapper}>
+          <div className={`${styles.projectsCarousel} ${isAnimating ? styles.animating : ''}`}>
+            {visibleItems.map((project, index) => (
               <div key={project.id} className={styles.carouselItem}>
                 <ProjectCard 
                   playlist={projectsData}
-                  trackIndex={index}
+                  trackIndex={startIndex + index}
                   {...project} 
                 />
               </div>
@@ -116,7 +129,7 @@ const Proyectos = () => {
         <button 
           className={styles.carouselBtn}
           onClick={handleNext}
-          disabled={currentIndex === maxIndex}
+          disabled={currentPage === maxPage}
           aria-label="Next projects"
         >
           <FaChevronRight size={20} />

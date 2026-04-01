@@ -77,8 +77,8 @@
   align-items: center;
   gap: 1.5rem;
   width: 100%;
-  max-width: 1400px;
   margin: 0 auto;
+  padding: 0;
 
   @include mobile {
     gap: 0.75rem;
@@ -119,13 +119,20 @@
   flex: 1;
   overflow: hidden;
   border-radius: 8px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .projectsCarousel {
   display: flex;
   gap: 1.5rem;
-  transition: transform 0.4s ease;
-  width: 100%;
+  transition: opacity 0.15s ease-out;
+  opacity: 1;
+
+  &.animating {
+    opacity: 0;
+  }
 
   @include mobile {
     gap: 1rem;
@@ -133,15 +140,16 @@
 }
 
 .carouselItem {
-  flex: 0 0 calc(25% - 1.125rem);
+  flex: 0 0 auto;
+  width: 280px;
   min-width: 0;
 
   @include mobile {
-    flex: 0 0 100%;
+    width: 100%;
   }
 
   @include tablet {
-    flex: 0 0 100%;
+    width: 280px;
   }
 }
 
