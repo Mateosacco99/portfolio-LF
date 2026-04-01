@@ -93,6 +93,7 @@
   align-items: center;
   gap: 1rem;
   flex-shrink: 0;
+  margin-left: auto;
 
   @include mobile {
     gap: 0.25rem;
