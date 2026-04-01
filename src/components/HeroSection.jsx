@@ -12,11 +12,11 @@ const HeroSection = () => {
   return (
     <BaseSection id="home" className={styles.heroSection}>
       <div className={styles.heroContent}>
-        <img src={heroData.image} alt={heroData.name} className={styles.heroImage} />
         <div className={styles.textContent}>
           <h1 className={styles.name}>{heroData.name}</h1>
           <p className={styles.profession}>{heroData.profession}</p>
         </div>
+        <img src={heroData.image} alt={heroData.name} className={styles.heroImage} />
       </div>
     </BaseSection>
   )
