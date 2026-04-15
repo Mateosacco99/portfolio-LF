@@ -2,16 +2,22 @@
 @use "./_variables" as *;
 @use "./_breakpoints" as *;
 
+$spacing-top: 3rem;
+$spacing-bottom: 3rem;
+$spacing-title-gap: 1.5rem;
+
 .biografiaSection {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  position: relative;
 }
 
 .bioContent {
-  gap: 2rem;
-  color: $MS-deepblue;
+  gap: $spacing-title-gap;
+  color: $MS-lightblue;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
+  padding: $spacing-top 2rem $spacing-bottom;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -19,9 +25,8 @@
   justify-content: center;
 
   @include mobile {
-    gap: 1.5rem;
-    max-width: 100%;
-    text-align: center;
+    gap: $spacing-title-gap * 0.75;
+    padding: 2rem 1.5rem;
   }
 }
 
@@ -32,12 +37,14 @@
   text-transform: uppercase;
   color: white;
   margin: 0;
+  margin-bottom: 0.5rem;
   animation: fadeInUp 1s ease-out 0.2s both;
   width: 100%;
 
   @include mobile {
     font-size: 1.5rem;
     letter-spacing: 0.15em;
+    margin-bottom: 0.25rem;
   }
 
   @include tablet {
@@ -48,11 +55,11 @@
 .bioText {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.75rem;
   width: 100%;
 
   @include mobile {
-    gap: 1rem;
+    gap: 1.25rem;
   }
 }
 
@@ -61,16 +68,36 @@
   font-weight: 400;
   line-height: 1.8;
   letter-spacing: 0.02em;
-  color: $MS-deepblue;
+  color: $MS-lightblue;
   margin: 0;
+  padding-left: 1rem;
   text-align: center;
   animation: fadeInUp 1s ease-out 0.4s both;
   text-transform: none;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-left-color: $MS-brightblue;
+  }
+
+  &:first-child {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: $MS-brightblue;
+    border-left-color: $MS-brightblue;
+  }
 
   @include mobile {
     font-size: 0.95rem;
     line-height: 1.6;
     text-align: left;
+    padding-left: 0.75rem;
+    border-left: 2px solid $MS-deepblue;
+    border-left-width: 2px;
+
+    &:first-child {
+      font-size: 1rem;
+    }
   }
 
   @include tablet {
