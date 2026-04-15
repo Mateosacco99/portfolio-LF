@@ -4,6 +4,7 @@ import Biografia from "./components/Biografia"
 import Proyectos from "./components/Proyectos"
 import GlobalMusicPlayer from "./components/GlobalMusicPlayer"
 import { MusicProvider } from "./context/MusicContext"
+import Contacto from "./components/Contacto"
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <HeroSection />
         <Biografia />
         <Proyectos />
+        <Contacto />
         <GlobalMusicPlayer />
       </div>
     </MusicProvider>

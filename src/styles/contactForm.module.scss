@@ -1,0 +1,167 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  width: 100%;
+  animation: fadeInUp 1s ease-out 0.6s both;
+
+  @include mobile {
+    gap: 1.25rem;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  @include mobile {
+    font-size: 0.9rem;
+  }
+}
+
+.input,
+.textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba($MS-lightblue, 0.3);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: $MS-lightblue;
+  font-family: inherit;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: rgba($MS-lightblue, 0.5);
+  }
+
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: $MS-lightblue;
+    box-shadow: 0 0 0 2px rgba($MS-lightblue, 0.1);
+  }
+
+  @include mobile {
+    font-size: 16px; // Prevents zoom on iOS
+    padding: 0.875rem 1rem;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: 'Courier New', monospace;
+
+  @include mobile {
+    min-height: 100px;
+  }
+}
+
+.recaptchaContainer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  
+  // Override reCAPTCHA styling for dark theme
+  :global(.g_recaptcha) {
+    display: flex;
+    justify-content: center;
+  }
+
+  @include mobile {
+    transform: scale(0.9);
+    transform-origin: center;
+    margin-bottom: -1rem;
+  }
+}
+
+.submitButton {
+  background: linear-gradient(135deg, $MS-deepblue, $MS-lightblue);
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba($MS-lightblue, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  @include mobile {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+.statusMessage {
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+
+  &.success {
+    background: rgba($MS-success, 0.15);
+    color: $MS-success;
+    border: 1px solid rgba($MS-success, 0.3);
+  }
+
+  &.error {
+    background: rgba($MS-danger, 0.15);
+    color: $MS-danger;
+    border: 1px solid rgba($MS-danger, 0.3);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
