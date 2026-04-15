@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = {
-    linkedin: 'https://linkedin.com/in/lucas-fernandez',
+    linkedin: 'https://linkedin.com/in/',
     instagram: 'https://instagram.com/pibo.fdez'
   }
 
