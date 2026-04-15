@@ -3,11 +3,56 @@ import styles from '../styles/proyectos.module.scss'
 import BaseSection from './BaseSection'
 import ProjectCard from './ProjectCard'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
 
 const Proyectos = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const [itemsPerPage, setItemsPerPage] = useState(4)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [projectsData, setProjectsData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true)
+        const firebaseConfig = {
+          apiKey: import.meta.env.VITE_API_KEY,
+          authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+          projectId: import.meta.env.VITE_PROJECT_ID,
+          storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+          messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+          appId: import.meta.env.VITE_APP_ID
+        }
+        
+        const app = initializeApp(firebaseConfig)
+        const db = getFirestore(app)
+        
+        const querySnapshot = await getDocs(collection(db, 'Proyectos'))
+        const projects = []
+        
+        querySnapshot.forEach((doc) => {
+          projects.push({
+            id: doc.id,
+            ...doc.data()
+          })
+        })
+        
+        setProjectsData(projects)
+        setError(null)
+      } catch (err) {
+        console.error('Error fetching projects:', err)
+        setError('Error loading projects')
+        setProjectsData([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProjects()
+  }, [])
 
   const handlePageChange = (newPage) => {
     setIsAnimating(true)
@@ -28,54 +73,6 @@ const Proyectos = () => {
       handlePageChange(Math.min(maxPage, currentPage + 1))
     }
   }
-
-  const projectsData = [
-    {
-      id: 1,
-      title: 'El Arengador',
-      artist: 'Jammin',
-      duration: 255,
-      image: 'https://i.scdn.co/image/ab67616d0000b273c95bda47389d92be0b851b78',
-      audioUrl: 'https://res.cloudinary.com/dji5xjerg/video/upload/v1775072213/Arengador_wsndg3.mp4',
-      spotifyUrl: 'https://open.spotify.com/track/0TgEWfrVfXx463kSuw5aNu'
-    },
-    {
-      id: 2,
-      title: 'El Arengador',
-      artist: 'Jammin',
-      duration: 255,
-      image: 'https://i.scdn.co/image/ab67616d0000b273c95bda47389d92be0b851b78',
-      audioUrl: 'https://res.cloudinary.com/dji5xjerg/video/upload/v1775072213/Arengador_wsndg3.mp4',
-      spotifyUrl: 'https://open.spotify.com/track/0TgEWfrVfXx463kSuw5aNu'
-    },
-    {
-      id: 3,
-      title: 'El Arengador',
-      artist: 'Jammin',
-      duration: 255,
-      image: 'https://i.scdn.co/image/ab67616d0000b273c95bda47389d92be0b851b78',
-      audioUrl: 'https://res.cloudinary.com/dji5xjerg/video/upload/v1775072213/Arengador_wsndg3.mp4',
-      spotifyUrl: 'https://open.spotify.com/track/0TgEWfrVfXx463kSuw5aNu'
-    },
-    {
-      id: 4,
-      title: 'El Arengador',
-      artist: 'Jammin',
-      duration: 255,
-      image: 'https://i.scdn.co/image/ab67616d0000b273c95bda47389d92be0b851b78',
-      audioUrl: 'https://res.cloudinary.com/dji5xjerg/video/upload/v1775072213/Arengador_wsndg3.mp4',
-      spotifyUrl: 'https://open.spotify.com/track/0TgEWfrVfXx463kSuw5aNu'
-    },
-    {
-      id: 5,
-      title: 'El Arengador',
-      artist: 'Jammin',
-      duration: 255,
-      image: 'https://i.scdn.co/image/ab67616d0000b273c95bda47389d92be0b851b78',
-      audioUrl: 'https://res.cloudinary.com/dji5xjerg/video/upload/v1775072213/Arengador_wsndg3.mp4',
-      spotifyUrl: 'https://open.spotify.com/track/0TgEWfrVfXx463kSuw5aNu'
-    },
-  ]
 
   useEffect(() => {
     const handleResize = () => {
@@ -102,39 +99,45 @@ const Proyectos = () => {
     <BaseSection id="proyectos" className={styles.proyectosSection}>
       <h2 className={styles.title}>PROYECTOS</h2>
       
-      <div className={styles.carouselContainer}>
-        <button 
-          className={styles.carouselBtn}
-          onClick={handlePrev}
-          disabled={currentPage === 0}
-          aria-label="Previous projects"
-        >
-          <FaChevronLeft size={20} />
-        </button>
+      {loading && <p>Cargando proyectos...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {!loading && !error && projectsData.length === 0 && <p>No hay proyectos disponibles</p>}
+      
+      {!loading && !error && projectsData.length > 0 && (
+        <div className={styles.carouselContainer}>
+          <button 
+            className={styles.carouselBtn}
+            onClick={handlePrev}
+            disabled={currentPage === 0}
+            aria-label="Previous projects"
+          >
+            <FaChevronLeft size={20} />
+          </button>
 
-<div className={styles.carouselWrapper}>
-          <div className={`${styles.projectsCarousel} ${isAnimating ? styles.animating : ''}`}>
-            {visibleItems.map((project, index) => (
-              <div key={project.id} className={styles.carouselItem}>
-                <ProjectCard 
-                  playlist={projectsData}
-                  trackIndex={startIndex + index}
-                  {...project} 
-                />
-              </div>
-            ))}
+          <div className={styles.carouselWrapper}>
+            <div className={`${styles.projectsCarousel} ${isAnimating ? styles.animating : ''}`}>
+              {visibleItems.map((project, index) => (
+                <div key={project.id} className={styles.carouselItem}>
+                  <ProjectCard 
+                    playlist={projectsData}
+                    trackIndex={startIndex + index}
+                    {...project} 
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <button 
-          className={styles.carouselBtn}
-          onClick={handleNext}
-          disabled={currentPage === maxPage}
-          aria-label="Next projects"
-        >
-          <FaChevronRight size={20} />
-        </button>
-      </div>
+          <button 
+            className={styles.carouselBtn}
+            onClick={handleNext}
+            disabled={currentPage === maxPage}
+            aria-label="Next projects"
+          >
+            <FaChevronRight size={20} />
+          </button>
+        </div>
+      )}
     </BaseSection>
   )
 }
