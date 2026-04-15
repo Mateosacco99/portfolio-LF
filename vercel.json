@@ -1,0 +1,66 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "outputDirectory": "dist",
+  "env": {
+    "VITE_API_KEY": {
+      "type": "secret"
+    },
+    "VITE_AUTH_DOMAIN": {
+      "type": "string"
+    },
+    "VITE_PROJECT_ID": {
+      "type": "string"
+    },
+    "VITE_STORAGE_BUCKET": {
+      "type": "string"
+    },
+    "VITE_MESSAGING_SENDER_ID": {
+      "type": "string"
+    },
+    "VITE_APP_ID": {
+      "type": "string"
+    },
+    "VITE_RECAPTCHA_SITE_KEY": {
+      "type": "string"
+    },
+    "VITE_FORMSPREE_FORM_ID": {
+      "type": "string"
+    },
+    "VITE_SKIP_RECAPTCHA": {
+      "type": "string"
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml",
+      "permanent": true
+    }
+  ]
+}

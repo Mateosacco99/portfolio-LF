@@ -56,8 +56,18 @@
     box-shadow: 0 0 0 2px rgba($MS-lightblue, 0.1);
   }
 
+  &.inputError {
+    border-color: $MS-danger;
+    background: rgba($MS-danger, 0.05);
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba($MS-danger, 0.1);
+      border-color: $MS-danger;
+    }
+  }
+
   @include mobile {
-    font-size: 16px; // Prevents zoom on iOS
+    font-size: 16px;
     padding: 0.875rem 1rem;
   }
 }
@@ -69,6 +79,124 @@
 
   @include mobile {
     min-height: 100px;
+  }
+}
+
+.charCounter {
+  font-size: 0.75rem;
+  color: rgba($MS-lightblue, 0.6);
+  text-align: right;
+  margin-top: -0.25rem;
+}
+
+.errorText {
+  font-size: 0.8rem;
+  color: $MS-danger;
+  font-weight: 500;
+  margin-top: -0.25rem;
+}
+
+.recaptchaContainer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  
+  :global(.g_recaptcha) {
+    display: flex;
+    justify-content: center;
+  }
+
+  @include mobile {
+    transform: scale(0.9);
+    transform-origin: center;
+    margin-bottom: -1rem;
+  }
+}
+
+.devNotice {
+  padding: 0.75rem 1rem;
+  background: rgba($MS-deepblue, 0.2);
+  border: 1px solid $MS-deepblue;
+  border-radius: 4px;
+  color: $MS-deepblue;
+  font-size: 0.85rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.submitButton {
+  background: linear-gradient(135deg, $MS-deepblue, $MS-lightblue);
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba($MS-lightblue, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  @include mobile {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+.statusMessage {
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+
+  &.success {
+    background: rgba($MS-success, 0.15);
+    color: $MS-success;
+    border: 1px solid rgba($MS-success, 0.3);
+  }
+
+  &.error {
+    background: rgba($MS-danger, 0.15);
+    color: $MS-danger;
+    border: 1px solid rgba($MS-danger, 0.3);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

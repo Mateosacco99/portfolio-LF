@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /.env
+
+Sitemap: https://lucasfernandez.vercel.app/sitemap.xml
+
+# Prevent indexing of certain paths
+Disallow: /node_modules/
+Disallow: /.git/

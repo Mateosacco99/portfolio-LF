@@ -4,9 +4,9 @@ import BaseSection from './BaseSection'
 import ProjectCard from './ProjectCard'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
-import { initializeApp } from 'firebase/app'
 import Spinner from './Spinner'
 import Error from './Error'
+import { getFirebaseApp } from '../service/firebaseInit'
 
 const Proyectos = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -20,16 +20,8 @@ const Proyectos = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true)
-        const firebaseConfig = {
-          apiKey: import.meta.env.VITE_API_KEY,
-          authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-          projectId: import.meta.env.VITE_PROJECT_ID,
-          storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-          messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-          appId: import.meta.env.VITE_APP_ID
-        }
         
-        const app = initializeApp(firebaseConfig)
+        const app = getFirebaseApp()
         const db = getFirestore(app)
         
         const querySnapshot = await getDocs(collection(db, 'Proyectos'))
@@ -46,7 +38,7 @@ const Proyectos = () => {
         setError(null)
       } catch (err) {
         console.error('Error fetching projects:', err)
-        setError('Error loading projects')
+        setError('Error al cargar los proyectos. Por favor, intenta más tarde.')
         setProjectsData([])
       } finally {
         setLoading(false)
