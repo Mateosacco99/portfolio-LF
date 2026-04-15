@@ -7,7 +7,7 @@ const NavBar = () => {
   const menuItems = [
     { label: 'Bio', href: '#biografia' },
     { label: 'Proyectos', href: '#proyectos' },
-    { label: 'Contacto', href: '#contact' }
+    { label: 'Contacto', href: '#contacto' }
   ]
 
   return (
