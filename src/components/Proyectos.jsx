@@ -6,6 +6,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 import Spinner from './Spinner'
+import Error from './Error'
 
 const Proyectos = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -101,7 +102,7 @@ const Proyectos = () => {
       <h2 className={styles.title}>PROYECTOS</h2>
       
       {loading && <Spinner size="md" />}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <Error message={error} />}
       {!loading && !error && projectsData.length === 0 && <p>No hay proyectos disponibles</p>}
       
       {!loading && !error && projectsData.length > 0 && (

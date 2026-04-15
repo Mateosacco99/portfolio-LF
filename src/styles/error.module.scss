@@ -1,0 +1,32 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.errorIcon {
+  width: 64px;
+  height: 64px;
+  background-color: $MS-danger;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.errorMessage {
+  font-size: 1.25rem;
+  color: $MS-danger;
+  margin: 0;
+  font-weight: 500;
+}
