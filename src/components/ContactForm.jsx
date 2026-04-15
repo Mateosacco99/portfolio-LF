@@ -36,7 +36,7 @@ const ContactForm = () => {
     setSubmitStatus(null)
 
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+      const response = await fetch(`https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_FORM_ID}`, {
         method: 'POST',
         body: JSON.stringify({
           name: formData.name,
