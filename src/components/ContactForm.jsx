@@ -109,7 +109,7 @@ const ContactForm = () => {
 
       <div className={styles.recaptchaContainer}>
         <ReCAPTCHA
-          sitekey="YOUR_RECAPTCHA_SITE_KEY"
+          sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
           onChange={handleRecaptchaChange}
           theme="dark"
         />
