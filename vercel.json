@@ -6,7 +6,7 @@
   "outputDirectory": "dist",
   "env": {
     "VITE_API_KEY": {
-      "type": "secret"
+      "type": "string"
     },
     "VITE_AUTH_DOMAIN": {
       "type": "string"
