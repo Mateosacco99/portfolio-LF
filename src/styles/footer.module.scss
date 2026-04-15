@@ -1,0 +1,77 @@
+@use "sass:color";
+@use "./_variables" as *;
+@use "./_breakpoints" as *;
+
+.footer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-top: 1px solid rgba($MS-lightblue, 0.1);
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+
+  @include mobile {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba($MS-lightblue, 0.1);
+  color: $MS-lightblue;
+  transition: all 0.3s ease;
+  border: 1px solid rgba($MS-lightblue, 0.2);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background: rgba($MS-lightblue, 0.2);
+    border-color: $MS-lightblue;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba($MS-lightblue, 0.2);
+  }
+
+  @include mobile {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.copyright {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba($MS-lightblue, 0.6);
+  letter-spacing: 0.05em;
+
+  @include mobile {
+    font-size: 0.8rem;
+  }
+}
